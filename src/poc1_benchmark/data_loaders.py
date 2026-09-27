@@ -17,8 +17,18 @@ def load_xnli_spanish(sample_size: int = 100) -> List[Dict]:
     - hypothesis: str
     - label: str (entailment, neutral, contradiction)
     """
-    dataset = load_dataset("xnli", "es", split="validation")
-    dataset = dataset.shuffle(seed=42).select(range(min(sample_size, len(dataset))))
+    try:
+        dataset = load_dataset("facebook/xnli", "es", split="validation", trust_remote_code=True)
+        dataset = dataset.shuffle(seed=42).select(range(min(sample_size, len(dataset))))
+    except Exception as e:
+        print(f"Warning: Could not load XNLI from facebook/xnli: {e}")
+        # Try alternative
+        try:
+            dataset = load_dataset("xnli", "es", split="validation", trust_remote_code=True)
+            dataset = dataset.shuffle(seed=42).select(range(min(sample_size, len(dataset))))
+        except:
+            print(f"Could not load XNLI, using minimal sample data")
+            return create_sample_spanish_dataset()
     
     label_map = {0: "entailment", 1: "neutral", 2: "contradiction"}
     
@@ -69,7 +79,7 @@ def load_emotion_english(sample_size: int = 100) -> List[Dict]:
     - emotion: str (sadness, joy, love, anger, fear, surprise)
     """
     try:
-        dataset = load_dataset("emotion", split="test")
+        dataset = load_dataset("dair-ai/emotion", split="test", trust_remote_code=True)
         dataset = dataset.shuffle(seed=42).select(range(min(sample_size, len(dataset))))
         
         label_map = {0: "sadness", 1: "joy", 2: "love", 3: "anger", 4: "fear", 5: "surprise"}

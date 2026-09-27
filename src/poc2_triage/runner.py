@@ -6,6 +6,7 @@ import time
 from pathlib import Path
 from typing import Dict, List, Tuple
 
+import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
@@ -295,9 +296,15 @@ class TicketTriageRunner:
         metrics_path = self.output_dir / "metrics.json"
         # Convert metrics to serializable format
         metrics_json = {
-            "automation": metrics["automation"],
+            "automation": {
+                k: int(v) if isinstance(v, (np.integer, np.int64)) else float(v) if isinstance(v, (np.floating, np.float64)) else v
+                for k, v in metrics["automation"].items()
+            },
             "needs_human_accuracy": float(metrics["needs_human_accuracy"]),
-            "urgency": metrics["urgency"],
+            "urgency": {
+                k: float(v) if isinstance(v, (np.floating, np.float64)) else v
+                for k, v in metrics["urgency"].items()
+            },
             "category": {
                 "accuracy": float(metrics["category"].accuracy.value),
                 "macro_f1": float(metrics["category"].macro_f1.value),
