@@ -57,14 +57,34 @@ def test_calculate_brier_score():
 
 
 def test_calculate_ece():
-    """Test ECE calculation."""
-    # Perfect calibration
-    probabilities = [0.9, 0.8, 0.1, 0.2]
-    predictions = [1, 1, 0, 0]
-    labels = [1, 1, 0, 0]
+    """Test ECE calculation with known values."""
+    # Perfect calibration: confidence matches accuracy
+    confidences = [0.9, 0.9, 0.1, 0.1]
+    correct = [True, True, False, False]
+    # Bin 1 [0.0-0.5]: [0.1, 0.1] with [False, False] = 0% acc, 10% conf → |0-0.1|=0.1
+    # Bin 2 [0.5-1.0]: [0.9, 0.9] with [True, True] = 100% acc, 90% conf → |1-0.9|=0.1
+    # ECE = 0.5 * 0.1 + 0.5 * 0.1 = 0.1
     
-    result = calculate_ece(probabilities, predictions, labels, n_bins=2)
-    assert 0 <= result.value <= 1
+    result = calculate_ece(confidences, correct, n_bins=2)
+    assert abs(result.value - 0.1) < 0.01
+    
+    # Perfect calibration with exact match
+    confidences = [0.8, 0.8, 0.8, 0.8, 0.2, 0.2, 0.2, 0.2]
+    correct = [True, True, True, True, False, False, False, False]
+    # High bin: 80% conf, 100% acc = 20% error
+    # Low bin: 20% conf, 0% acc = 20% error
+    # Hmm, this isn't perfect calibration
+    
+    result = calculate_ece(confidences, correct, n_bins=2)
+    assert 0.1 < result.value < 0.3
+    
+    # Poor calibration: overconfident
+    confidences = [0.9, 0.9, 0.9, 0.9]
+    correct = [True, False, False, False]  # 25% correct but 90% confident
+    
+    result = calculate_ece(confidences, correct, n_bins=2)
+    # All in high bin: 25% acc, 90% conf = 65% error
+    assert result.value > 0.6
 
 
 def test_calculate_ordinal_mae():

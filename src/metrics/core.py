@@ -139,19 +139,25 @@ def calculate_brier_score(
 
 
 def calculate_ece(
-    probabilities: List[float],
-    predictions: List[int],
-    labels: List[int],
+    confidences: List[float],
+    correct: List[bool],
     n_bins: int = 10,
 ) -> MetricResult:
     """
     Calculate Expected Calibration Error (ECE).
     
     ECE measures the difference between confidence and accuracy across bins.
+    
+    Args:
+        confidences: Confidence scores (0-1) for each prediction
+        correct: Boolean array indicating if each prediction was correct
+        n_bins: Number of bins for calibration (default 10)
+    
+    Returns:
+        ECE metric result
     """
-    probs = np.array(probabilities)
-    preds = np.array(predictions)
-    targets = np.array(labels)
+    confs = np.array(confidences)
+    corr = np.array(correct, dtype=float)
     
     bin_boundaries = np.linspace(0, 1, n_bins + 1)
     ece = 0
@@ -160,15 +166,17 @@ def calculate_ece(
         lower = bin_boundaries[i]
         upper = bin_boundaries[i + 1]
         
-        in_bin = (probs >= lower) & (probs < upper)
+        in_bin = (confs >= lower) & (confs < upper)
         if i == n_bins - 1:  # Include 1.0 in last bin
-            in_bin = in_bin | (probs == 1.0)
+            in_bin = in_bin | (confs == 1.0)
         
         if np.sum(in_bin) > 0:
-            bin_accuracy = np.mean(preds[in_bin] == targets[in_bin])
-            bin_confidence = np.mean(probs[in_bin])
-            bin_weight = np.sum(in_bin) / len(probs)
+            bin_accuracy = np.mean(corr[in_bin])
+            bin_confidence = np.mean(confs[in_bin])
+            bin_weight = np.sum(in_bin) / len(confs)
             ece += bin_weight * abs(bin_accuracy - bin_confidence)
+    
+    return MetricResult(value=ece, label="ece")
     
     return MetricResult(value=ece, label="ece")
 

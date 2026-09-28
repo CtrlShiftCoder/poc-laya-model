@@ -54,10 +54,15 @@ data/downloads/
 *.parquet
 *.duckdb
 
-# Reports (keep sample reports)
+# Reports (keep actual results)
 reports/*
-!reports/sample/
+!reports/poc1/
+!reports/poc2/
 !reports/.gitkeep
+
+# HuggingFace cache
+.cache/
+~/.cache/huggingface/
 
 # Logs
 *.log

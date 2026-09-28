@@ -1,0 +1,51 @@
+id,text,true_emotion,predicted_emotion,confidence,latency_ms,correct
+0,i was feeling really troubled and down over what my dad said,sadness,sadness,0.9982,126.65843963623047,True
+1,i feel so thrilled to have three such distinguished individuals such as yourselves here,joy,joy,0.9356,59.44347381591797,True
+2,i feel is that the most likeable characters aren t important enough to the plot,joy,love,0.8968,59.18145179748535,False
+3,i tune out the rest of the world and focus on the rhythm of the needles and the softness of the yarn and for that time i feel my most peaceful,joy,joy,0.9864,64.99743461608887,True
+4,i sit here writing this i feel unhappy inside,sadness,sadness,0.9822,56.38575553894043,True
+5,im feeling and if ive liked being pregnant,love,joy,0.8272,55.39083480834961,False
+6,im very hurt and i feel unimportant,sadness,sadness,0.9996,55.036067962646484,True
+7,i used to be able to hang around talk with the cashier when i was putting away my money now i feel rushed and stressed if i take a second to fumble with the coins and put them in my purse,anger,sadness,0.9618,71.54512405395508,False
+8,i don t have the feeling of divine vibrations,joy,surprise,0.3667,55.914878845214844,False
+9,i vented my feelings towards the pathetic excuse of a communicat,sadness,anger,0.9067,56.21004104614258,False
+10,i feel privileged to be a part of something so eternal and so precious to the lord jesus he shed his blood so that churches like this could exist,joy,love,0.3129,64.28050994873047,False
+11,i get the feeling that this could be dangerous,anger,fear,0.9998,55.912017822265625,False
+12,i feel like some of you have pains and you cannot imagine becoming passionate about the group or the idea that is causing pain,joy,sadness,0.8795,60.70899963378906,False
+13,i cant write a review for a book i adore unless i am feeling in the adoring mood at that moment,love,love,0.9985,61.50674819946289,True
+14,i mentioned in my last blog that i have started to get the feeling that i have been pressured into studying things i do not like which has also made me into a person i might not fully be,fear,sadness,0.9035,69.6251392364502,False
+15,i feel like it was all in vain cant be right and feel this wrong this heart of mine is just,sadness,sadness,0.9893,60.2564811706543,True
+16,i was wondering if you will focus on the problems because any way you are not care for themselves when complaining or feeling needy,sadness,surprise,0.6107,61.173200607299805,False
+17,im feeling insecure at the moment,fear,sadness,0.9867,54.90589141845703,False
+18,i feel more of numb now,sadness,sadness,0.8958,55.49049377441406,True
+19,i feel like that because for the most part i have accepted that this is a part of my life and that people will never changed,love,sadness,0.8448,62.642812728881836,False
+20,i feel i can only hope im not alone in these thoughts and im sure to all you fellow exchange students you probably have the same thoughts in mind with at least some of this listed some might say being an exchange student is unlike any other experience,sadness,love,0.3614,74.66363906860352,False
+21,i feel agitated and annoyed more than worried or fearful but these feelings can easily lead to being short tempered with my family and feelings of disharmony,fear,sadness,0.7345,63.77077102661133,False
+22,im feeling so appreciative of every experience in my life that has brought me to now to today,joy,joy,0.9952,60.11343002319336,True
+23,ive have chosen to walk with jesus and maybe im feeling a bit miserable im going to suck it up and think about these three dudes,sadness,sadness,0.6599,62.07633018493652,True
+24,i hate feeling like this this is bullshit ok i m so done bye,joy,sadness,0.7153,57.33966827392578,False
+25,i see all my friends posting pics and status updates of where they are going or what they are doing and i feel a bit jealous knowing it s not something i can get out and enjoy,anger,joy,0.9811,68.24994087219238,False
+26,i feel eager to do well and i feel like ive got more titles in me he concluded ominously,joy,joy,0.7718,58.4254264831543,True
+27,i don t care if any of you read this but this is just what i feel when i m around you guys i feel hated,sadness,sadness,0.4938,61.637163162231445,True
+28,i could empathize with tab because of raging hormones and the connection feeling like someone else gets you thinks youre smart pretty worth attention,joy,sadness,0.8342,61.35129928588867,False
+29,i feel like i had a rather productive weekend and i cant always say that no matter how much i get done,joy,joy,0.9727,60.43362617492676,True
+30,i feel and talk like a disadvantaged child and am waiting for half my face to come back to me,sadness,sadness,0.7203,58.34650993347168,True
+31,i think itd be easier if i had parents that argued with me about it then i could feel rebellious or something p but right now i just feel like a burden,anger,sadness,0.893,66.41125679016113,False
+32,i have some pretty brazen goals and each day i feel stronger and more confident that i m going to reach my desired end result,joy,joy,0.4329,62.14642524719238,True
+33,i feel privileged in my world,joy,joy,0.9218,55.51505088806152,True
+34,i feel really irritated when i talk about my problems and people start talking about theirs,anger,anger,0.9985,57.38186836242676,True
+35,i could change the emphasis and say i am stella and i m noticing i m feeling impatient,anger,sadness,0.7405,62.41130828857422,False
+36,im feeling really bitter about this one,anger,anger,0.9461,56.15568161010742,True
+37,i usually like sam but sometimes he gets downright whiny and i ll admit that all the mistakes he made due to sibling rivalry and pride that eventually led to the end of season kind of made me feel less tragic about the whole thing,sadness,sadness,0.6354,83.39381217956543,True
+38,i do exercise i feel energetic and i am able to perform my other tasks in a very good manner,joy,joy,0.9951,60.486555099487305,True
+39,i feel fond of him though because he feels like an amalgamation of many people i already know,love,love,0.9997,60.08005142211914,True
+40,i was feeling frantic,fear,fear,0.9676,60.07838249206543,True
+41,i like in this world and making a list of them always makes me feel joyful,joy,joy,0.992,61.72037124633789,True
+42,i lay here typing this hate blog entry that no one would read although i want the whole world to read and praise me like dickens i feel so miserable,sadness,sadness,0.7092,77.06665992736816,True
+43,i feel myself falling into the pit of buying it from her i think he s for real i m just skeptical of the women,fear,anger,0.2374,65.03701210021973,False
+44,i am reading about s sewing circles and i feel completely happy if you cant spit in the face of imperialism at least be a lesbian,joy,joy,0.9913,76.70736312866211,True
+45,i suspect his reasoning may simply be to lull apple into feeling complacent,joy,joy,0.7888,61.59567832946777,True
+46,i feel as if we have a talented enough team to win some games and go deep into the tournament,joy,joy,0.6936,68.8014030456543,True
+47,i think they have always been proponents of the idea and it is just slightly possible that his feelings for a particularly charming new england girl have brought him around to their way of thinking,joy,love,0.978,74.62859153747559,False
+48,i didnt make it to my weight watchers meeting feeling guilty i made sure i had a healthy breakfast consisting of museli yoghurt and fruit,sadness,sadness,0.4421,68.20082664489746,True
+49,i feel more assured having made my peace with atheism,joy,joy,0.7248,66.95389747619629,True

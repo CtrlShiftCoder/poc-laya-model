@@ -53,12 +53,8 @@ def compute_choice_metrics(
     correct = [pred == label for pred, label in zip(predictions, labels)]
     brier = calculate_brier_score(confidences, correct)
     
-    # ECE requires per-class probabilities
-    if probabilities:
-        # For simplicity, use confidence as proxy
-        ece = calculate_ece(confidences, correct, correct)
-    else:
-        ece = MetricResult(value=0, label="ece")
+    # ECE uses confidence and correct/incorrect
+    ece = calculate_ece(confidences, correct)
     
     # Performance metrics
     if latencies_ms:
