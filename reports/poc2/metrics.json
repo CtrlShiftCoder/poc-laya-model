@@ -1,0 +1,27 @@
+{
+  "automation": {
+    "total_tickets": 20,
+    "automated": 4,
+    "should_automate": 10,
+    "automation_rate": 0.2,
+    "automation_precision": 0.5,
+    "ideal_coverage": 0.5,
+    "incorrectly_automated": 2,
+    "coverage_gap": 0.3
+  },
+  "needs_human_accuracy": 0.7,
+  "urgency": {
+    "ordinal_mae": 0.7,
+    "exact_match_accuracy": 0.3,
+    "latency_p50": 213.0979299545288,
+    "latency_p95": 231.49417638778687,
+    "latency_p99": 239.5174479484558
+  },
+  "category": {
+    "accuracy": 0.35,
+    "macro_f1": 0.29,
+    "brier_score": 0.324400091,
+    "latency_p50": 213.0979299545288,
+    "latency_p95": 231.49417638778687
+  }
+}

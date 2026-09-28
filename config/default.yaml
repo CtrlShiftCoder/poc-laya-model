@@ -1,0 +1,54 @@
+# Backend configuration
+laya_http:
+  endpoint: "http://localhost:8000/v1/systemone"
+  timeout: 30
+  max_retries: 3
+
+jev_http:
+  endpoint: "https://api.typesafe.ai/v1/systemone"
+  timeout: 30
+  max_retries: 3
+  enabled: false  # Requires TYPESAFE_API_KEY env var
+
+# Rate limiting
+rate_limit:
+  requests_per_minute: 60
+  cost_cap_usd: 10.0
+
+# Model configuration
+laya:
+  default_model: "multilingual"  # For Spanish support
+  device: "cpu"
+  cache_dir: ".cache/models"
+
+# Metrics configuration
+metrics:
+  ece_bins: 10
+  bootstrap_iterations: 1000
+  confidence_level: 0.95
+  
+# PoC 1: Benchmark
+poc1:
+  datasets:
+    - name: "xnli_es"
+      subset: "es"
+      sample_size: 100
+      task: "entailment"
+    - name: "massive"
+      subset: "es-ES"
+      sample_size: 100
+      task: "intent"
+  output_dir: "reports/poc1"
+
+# PoC 2: Ticket triage
+poc2:
+  synthetic_dataset: "data/poc2_tickets/tickets_es.jsonl"
+  categories:
+    - "facturación"
+    - "técnico"
+    - "ventas"
+    - "cancelación"
+    - "otro"
+  urgency_levels: 3
+  confidence_threshold: 0.75
+  output_dir: "reports/poc2"
