@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  laya-serve:
+    image: python:3.11-slim
+    container_name: laya-serve
+    command: >
+      bash -c "
+      pip install --no-cache-dir laya &&
+      python -m laya.serve --host 0.0.0.0 --port 8000
+      "
+    ports:
+      - "8000:8000"
+    environment:
+      - LAYA_DEVICE=cpu
+      - LAYA_PRELOAD=multilingual
+      - LAYA_THREADS=4
+    volumes:
+      - laya-models:/root/.cache/huggingface
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+    profiles:
+      - default
+
+  laya-serve-gpu:
+    image: python:3.11-slim
+    container_name: laya-serve-gpu
+    command: >
+      bash -c "
+      pip install --no-cache-dir laya torch &&
+      python -m laya.serve --host 0.0.0.0 --port 8000
+      "
+    ports:
+      - "8000:8000"
+    environment:
+      - LAYA_DEVICE=cuda
+      - LAYA_PRELOAD=multilingual
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      - laya-models:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    profiles:
+      - gpu
+
+  benchmark-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: benchmark-runner
+    depends_on:
+      - laya-serve
+    environment:
+      - LAYA_EVAL__LAYA_HTTP__ENDPOINT=http://laya-serve:8000/v1/systemone
+    volumes:
+      - ./reports:/workspace/reports
+      - ./data:/workspace/data
+      - ./config:/workspace/config
+    command: ["make", "poc1"]
+    profiles:
+      - benchmark
+
+volumes:
+  laya-models:
+    driver: local
